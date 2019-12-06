@@ -13,4 +13,7 @@ urlpatterns = [
     path('api/user/', include('account.api.urls', namespace='account')),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

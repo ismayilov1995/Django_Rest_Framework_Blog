@@ -3,6 +3,8 @@ from rest_framework.test import APITestCase
 from django.urls import reverse
 from rest_framework.utils import json
 
+from account.models import Profile
+
 
 class UserRegistrationTestCase(APITestCase):
     url = reverse('account:register')
@@ -27,6 +29,11 @@ class UserRegistrationTestCase(APITestCase):
         self.test_user_registration()
         response = self.client.post(self.url, self.data_test_user)
         self.assertEqual(400, response.status_code)
+
+    def test_userprofile_is_create(self):
+        # Istifadeci qeydiyyatdan kecende profil acilir
+        self.test_user_registration()
+        self.assertTrue(Profile.objects.filter(pk=1).exists())
 
     def test_user_authenticated_registration(self):
         # Session ile daxil olubsa seifeni gormesin

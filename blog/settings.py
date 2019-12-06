@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wv9mjfws5u-k_59+jvufjt5gus^r=cxp57x1uem(m5=(=r)-qy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -77,6 +77,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'blog.urls'
+
+CSRF_COOKIE_SECURE = True
 
 TEMPLATES = [
     {
@@ -147,6 +149,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,"static")
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-print(MEDIA_ROOT)
